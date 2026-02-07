@@ -1,31 +1,39 @@
 name: Notificación Diaria de Clima
 
+# Controla cuándo se ejecuta el script
 on:
   schedule:
     # Se ejecuta todos los días a las 07:00 AM UTC
-    # Ojo: UTC es 1 hora menos que en España (2 en verano)
+    # (Equivale a las 08:00 AM en España en invierno / 09:00 AM en verano)
     - cron: '0 7 * * *'
-  workflow_dispatch: # Esto permite que puedas darle al botón "Play" manualmente para probarlo
+  
+  # Permite ejecutar el script manualmente desde la pestaña "Actions"
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Descargar código del repositorio
-        uses: actions/checkout@v3
 
+    steps:
+      # 1. Descarga el código de tu repositorio
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      # 2. Instala Python en el servidor de GitHub
       - name: Configurar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
-      - name: Instalar librerías
+      # 3. Instala la librería necesaria
+      - name: Instalar dependencias
         run: pip install requests
 
-      - name: Ejecutar script
+      # 4. Ejecuta el script de Python pasando los Secretos como variables de entorno
+      - name: Ejecutar script de clima
         env:
-          # Usaremos "Secrets" para no poner tus llaves en el código
           WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
-        run: python weather.py
+          CIUDAD: ${{ secrets.CIUDAD }}
+        run: python tu_script.py
