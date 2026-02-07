@@ -32,7 +32,8 @@ def obtener_clima():
                 mensaje += "\n⚠️ ¡Lleva paraguas! ☔"
             elif temp < 10:
                 mensaje += "\n❄️ ¡Abrígate, hace frío! 🧥"
-                
+            else:
+                mensaje += "\n😸 ¡Que tengas un buen dia!"
             return mensaje
         else:
             return f"❌ Error API Clima: {datos.get('message', 'Error desconocido')}"
