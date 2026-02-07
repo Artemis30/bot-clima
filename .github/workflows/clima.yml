@@ -36,4 +36,4 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
           CIUDAD: ${{ secrets.CIUDAD }}
-        run: python tu_script.py
+        run: python weather.py
