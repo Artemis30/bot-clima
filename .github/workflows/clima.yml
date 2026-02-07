@@ -1,0 +1,31 @@
+name: Notificación Diaria de Clima
+
+on:
+  schedule:
+    # Se ejecuta todos los días a las 07:00 AM UTC
+    # Ojo: UTC es 1 hora menos que en España (2 en verano)
+    - cron: '0 7 * * *'
+  workflow_dispatch: # Esto permite que puedas darle al botón "Play" manualmente para probarlo
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código del repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Instalar librerías
+        run: pip install requests
+
+      - name: Ejecutar script
+        env:
+          # Usaremos "Secrets" para no poner tus llaves en el código
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: python tu_script.py
