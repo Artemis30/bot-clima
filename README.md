@@ -47,3 +47,10 @@ El proyecto depende exclusivamente de variables de entorno para su configuració
 | `CIUDAD2`           | Ciudad secundaria |
 
 Estas variables deben configurarse como **GitHub Secrets** en:
+
+Settings → Secrets and variables → Actions
+
+El script accede a ellas mediante:
+
+```python
+os.getenv("VARIABLE_NAME")
