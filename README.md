@@ -1,6 +1,6 @@
 # 🌤️ Daily Telegram Weather Bot
 
-Bot de Telegram automatizado que envía un informe diario del clima para dos ciudades configurables utilizando **OpenWeatherMap API** y ejecutado mediante **GitHub Actions**.
+Bot de Telegram automatizado que envía un informe diario del clima para hasta dos ciudades configurables utilizando **OpenWeatherMap API** y ejecutado mediante **GitHub Actions**.
 
 Diseñado con un enfoque minimalista, seguro y fácilmente extensible.
 
